@@ -1,0 +1,7 @@
+<view class="tips">点击复制昵称</view>
+
+<block wx:for="{{items}}">
+<view class="item" bindtap='copy' data-text="{{item.name}}" style="color:{{item.color}}">
+{{item.name}}
+</view>
+</block>

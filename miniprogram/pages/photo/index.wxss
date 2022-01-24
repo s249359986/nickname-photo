@@ -1,0 +1,26 @@
+page { 
+  padding-top: 10rpx; 
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;  
+  margin: 0 auto;
+  justify-content: center;
+}
+.content:after{
+    content: '';
+    width: 455rpx;    
+  }
+.img {
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  margin-bottom: 10rpx;
+  width: 220rpx;
+  height: 220rpx;    
+}
+.img-no {
+  width: 0rpx;
+  height: 1rpx;   
+}

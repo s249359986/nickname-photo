@@ -1,0 +1,107 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "minifyWXML": true,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "ignoreUploadUnusedFiles": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true
+  },
+  "appid": "wxb53aca2a1288ae69",
+  "projectname": "%E5%A4%B4%E5%83%8F%E6%98%B5%E7%A7%B0%E5%A4%A7%E5%85%A8pro",
+  "libVersion": "2.8.1",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "pages/nickName/index",
+          "pathName": "pages/nickName/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/nickName/detail/index",
+          "pathName": "pages/nickName/detail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/text/index",
+          "pathName": "pages/text/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/person/index",
+          "pathName": "pages/person/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/photo/index",
+          "pathName": "pages/photo/index",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

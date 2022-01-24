@@ -1,0 +1,20 @@
+.container{
+  width: 100%;  
+}
+.gh{
+  font-size: 30rpx;
+  color:#333;
+  margin:30rpx 30rpx 0 30rpx;
+}
+.banner{
+  padding-bottom: 30rpx;
+}
+.btn-kf{
+  position: fixed;
+  width: 80%;  
+  bottom: 30rpx;
+  left: 0;
+  right: 0;
+  background-color: #f00000;
+  color: white;  
+}

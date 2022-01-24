@@ -1,0 +1,16 @@
+
+
+        <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" bind:loadmore="onLoadmore" scrollTop="{{scrollTop}}">
+        <view class="content">
+    <block  wx:for-index="pagesIndex" wx:for="{{pages}}" >    
+
+            <image wx:key="item.id" wx:if="{{item.isShow}}" mode="aspectFit"   class="img" src="./img/loading.gif"></image> 
+
+            <image wx:key="item.id" bindtap="goDetail" data-url='{{item.url}}' mode="aspectFit" class="{{item.isShow? 'img-no':'img'}}" bindload="handleLoad" lazy-load='{{true}}' data-index="{{pagesIndex}}" src="{{item.url}}"></image>   
+
+                  
+
+          </block>
+          </view>
+</wux-refresher>
+

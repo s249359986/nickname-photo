@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "i-notice-bar": "../../libs/ivew/dist/notice-bar/index",
+    "i-cell-group": "../../libs/ivew/dist/cell-group/index",
+    "i-cell": "../../libs/ivew/dist/cell/index",
+    "i-icon": "../../libs/ivew/dist/icon/index"
+  },
+  "navigationBarBackgroundColor": "#ff6699",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "昵称"
+}

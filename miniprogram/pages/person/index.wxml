@@ -1,0 +1,9 @@
+<!-- index.wxml -->
+<view class="container">
+<view class="gh">微信公众号：文案集pro</view>
+<view class="gh">微信服务号：约密派</view>
+
+	<button open-type="contact" bindtap="handleCallKf" class="btn-kf"> 在线客服 </button>
+
+
+</view>

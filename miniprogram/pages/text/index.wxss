@@ -1,0 +1,60 @@
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.item-new{
+  width: 96%;
+  margin: 20rpx auto;  
+  height: 200rpx;
+  line-height: 200rpx;    
+  box-sizing: border-box;  
+}
+
+
+.favor{
+  display: flex;
+  align-content: space-between;
+  position: fixed;
+  top: 15rpx;
+  right: 20rpx;
+  width: 480rpx;
+  height: 60rpx;
+  padding: 0 20rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background: orange;
+  z-index: 999;
+}
+.favor .favorText{
+  flex: 1;
+}
+.favor::after{
+  display: inline-block;
+  position: absolute;
+  top: -10rpx;
+  right: 118rpx;
+  content: ' ';
+  width: 20rpx;
+  height: 20rpx;
+  background: orange;
+  transform: rotate(45deg);
+}
+.btnClose{
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+}
+.btnClose::before{
+  /* content: '\2716'; */
+  content: '\00D7';
+  color: #fff;
+  font-size: 42rpx;
+}
+.adContainer {
+  width: 98%;    
+  margin: 0 auto;
+}

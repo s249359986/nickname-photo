@@ -1,0 +1,12 @@
+<view class="card-wrap">
+<view class="card mt" bindtap='onMySelect'>
+  <image bindtap="previewImage" class="img-size" src='{{url}}'></image>
+</view>
+</view>
+
+<view class="btn-wrap btn-self">
+  <view class="btn-item icon-base icon-home" bindtap="goHome">首页</view>
+  <view bindtap="download" class="btn-item icon-base icon-down">下载</view>
+   <view open-type="share" class="btn-item icon-base icon-share" >分享</view>
+  <button open-type="share"></button>
+</view>

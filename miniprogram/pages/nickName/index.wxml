@@ -1,0 +1,10 @@
+
+<view class="container">
+
+
+  <i-cell bindtap='bindGo' data-id='{{item.id}}' label='{{item.des}}' wx:for="{{menu}}" data-index="{{index}}" i-class='item-new'  title="{{item.title}}" is-link url="{{item.menuUrl}}">
+<!-- <image slot="icon" style="width: 30px; height: 30px;padding-top:20rpx;padding-right:20rpx;" mode="" src="{{item.iconUrl}}"></image> -->
+
+  </i-cell>
+
+</view>
