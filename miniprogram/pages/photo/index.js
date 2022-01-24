@@ -121,9 +121,12 @@ Page({
       for (let i = 0; i < res.length; i++) {
         let tempName = res[i].get("thumbnail");
         let tempUrl = `${FILE_URL_PATH}${tempName}`;        
-        if(tempName.indexOf('http') > -1){
+        if(tempName.indexOf('http') > -1){         
           tempUrl = tempName;
-        }       
+        }  
+        if(tempUrl.indexOf('https')>-1){
+          tempUrl = tempUrl.replace('https','http');
+        }     
         tempData.push({
           id:res[i]['id'],
           isShow: true,

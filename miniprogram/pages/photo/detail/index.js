@@ -43,8 +43,9 @@ Page({
     wx.showLoading({
       title: '保存中...',
     })
+    let tempHttps = preImg.replace('http','https');
     downloadFile({
-      url: preImg
+      url: tempHttps
     }).then(res=>{
       console.log("downloadFile",res)
       saveImageToPhotosAlbum({
@@ -117,7 +118,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return shareContent
-
+    if(preImg){
+      shareContent['imageUrl'] = preImg
+    }    
+    return shareContent;
   }
 })
