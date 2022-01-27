@@ -1,12 +1,14 @@
 {
   "pages": [
     "pages/nickName/index",
-    "pages/photo/index",    
-    "pages/photo/detail/index",    
+    "pages/photo/index",
+    "pages/photo/detail/index",
     "pages/nickName/detail/index",
     "pages/text/index",
     "pages/text/detail/index",
-    "pages/person/index"
+    "pages/person/index",
+    "pages/bizhi/index",
+    "pages/bizhi/detail/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -36,12 +38,12 @@
         "iconPath": "images/text1.png",
         "pagePath": "pages/text/index",
         "text": "个签"
-      },      
+      },
       {
         "selectedIconPath": "images/my1.png",
         "iconPath": "images/my.png",
-        "pagePath": "pages/person/index",
-        "text": "我的"
+        "pagePath": "pages/bizhi/index",
+        "text": "壁纸"
       }
     ]
   },

@@ -1,0 +1,16 @@
+<view class="card-wrap">
+  <view class="card mt" bindtap='onMySelect'>
+    <image bindtap="previewImage" mode="aspectFit" class="img-size" src='{{url}}'></image>
+  </view>
+</view>
+
+<view class="btn-wrap btn-self">
+  <view class="btn-item icon-base icon-home" bindtap="goHome">首页</view>
+  <view bindtap="download" class="btn-item icon-base icon-down">下载</view>
+  <view open-type="share" class="btn-item icon-base icon-share">分享</view>
+  <button open-type="share"></button>
+</view>
+
+<view class="ad">
+  <ad unit-id="adunit-936dabc08b80be97" ad-type="video" ad-theme="white"></ad>
+</view>

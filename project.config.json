@@ -19,6 +19,9 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -33,10 +36,7 @@
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true
+    "ignoreUploadUnusedFiles": true
   },
   "appid": "wxb53aca2a1288ae69",
   "projectname": "%E5%A4%B4%E5%83%8F%E6%98%B5%E7%A7%B0%E5%A4%A7%E5%85%A8pro",
