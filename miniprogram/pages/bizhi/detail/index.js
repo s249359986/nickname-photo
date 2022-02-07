@@ -29,6 +29,15 @@ Page({
     })
 
   },
+  previewImage1(){    
+    wx.showToast({
+      title: '长按图片保存',
+      icon: 'none',
+      duration: 2000
+    })
+    this.previewImage()
+    
+  },
   previewImage:function (){
     wx.previewImage({ urls: [preImg]})
   },

@@ -5,7 +5,7 @@ page {
 
 .content {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   flex-wrap: wrap;  
   margin: 0 auto;
   justify-content: center;
@@ -15,13 +15,14 @@ page {
     width: 455rpx;    
   }
 .img {
-  margin-left: 5rpx;
+  /* margin-left: 5rpx;
   margin-right: 5rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 10rpx; */
   /* width: 220rpx;
   height: 220rpx;     */
-  max-width: 220rpx;
-  max-height: 220rpx;
+  /* max-width: 220rpx;
+  max-height: 220rpx; */
+  width: 100%;
 }
 .img-no {
   width: 0rpx;
@@ -29,9 +30,29 @@ page {
 }
 .img-wrap{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* background-color: rgb(0 0 0 / 0.3); */
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
-  margin: 16rpx 16rpx 16rpx 16rpx;
+  /* box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); */
+  width: 100%;
+  padding: 5rpx;
+  margin-bottom: 10rpx;
+  box-sizing: border-box;
+}
+.img-des{
+  flex:1;
+  text-align: justify;
+  width: 100%;
+  margin-top: 15rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  color:#333;
+  font-size: 30rpx;
+}
+.content-left{
+  width: 50%;
+}
+.content-right{
+  width: 50%;
 }

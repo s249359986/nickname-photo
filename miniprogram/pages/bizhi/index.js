@@ -23,7 +23,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pages: []
+    pages: [],
+    leftPages:[],
+    rightPages: [],
   },
   goDetail(e) {
     console.log("goDetail", e)
@@ -60,7 +62,9 @@ Page({
     })
     _limit = 0
     this.setData({
-      pages: []
+      pages: [],
+      leftPages:[],
+      rightPages:[],
     })
     _currentTab = this.getCurrentTab(e.detail.key)['value']
     console.log('onChange', _currentTab)
@@ -77,35 +81,71 @@ Page({
     this.initMockData();
     this.init();    
   },
-  handleLoad(e) {
+  handleLeftLoad(e){
     console.log("handleLoad",e);
     let {index} = e.target.dataset;
-    let imgs = this.data.pages;
+    let imgs = this.data.leftPages;
     imgs[index]['isShow'] = false;
     setTimeout(()=>{
       this.setData({
-        pages:imgs
+        leftPages:imgs
       })
     },300);
+  },
+  handleRightLoad(e){
+    console.log("handleLoad",e);
+    let {index} = e.target.dataset;
+    let imgs = this.data.rightPages;
+    imgs[index]['isShow'] = false;
+    setTimeout(()=>{
+      this.setData({
+        rightPages:imgs
+      })
+    },300);
+  },
+  handleLoad(e) {
    
   },
+  // setPagesData(datas) {
+  //   const leftArr = [];
+  //   const rightArr = [];
+  //   for(let i=0;i< datas.length;i++){
+  //     if(i%2 === 0){
+  //       leftArr.push(datas[i]);
+  //     }
+  //     else {
+  //       rightArr.push(datas[i]);
+  //     }
+  //   }
+  //   this.setData({
+  //     leftPages: leftArr,
+  //     rightPages: rightArr,
+  //   })
+
+  // },
   initMockData(){
-    let temp = this.data.pages;
-    for(let i=0;i<22;i++){
-      temp.push({
+    let leftTemp = this.data.leftPages;
+    let rightTemp = this.data.rightPages;
+    for(let i=0;i<11;i++){
+      leftTemp.push({
+        isShow: true,
+          url: "",
+      });
+      rightTemp.push({
         isShow: true,
           url: "",
       });
     }
     this.setData({
-      pages: temp
+      leftPages: leftTemp,
+      rightPages:rightTemp,
     });
   },
   init() {
     _isLoading = true
     
     const query = new $AV.Query('photo');
-    query.equalTo('isShow', 0);
+    query.equalTo('isShow', 1);
     query.equalTo('type', 2);
     query.descending('createdAt');
     query.limit(_count);
@@ -113,25 +153,41 @@ Page({
     query.find().then((res) => {
       if(_limit===0){
         this.setData({
-          pages: []
+          leftPages:[],
+          rightPages:[],
         });
       }
       wx.hideLoading();
       console.log('getPhoto', res)
-      let tempData = this.data.pages;
+      let tempLeftData = this.data.leftPages;
+      let tempRightData = this.data.rightPages;
       for (let i = 0; i < res.length; i++) {
         let tempUrl = res[i].get("thumbnail");  
-        let originUrl = res[i].get("originUrl");         
-        tempData.push({
-          id:res[i]['id'],
-          isShow: true,
-          url: tempUrl,
-          originUrl,
-        })
+        let originUrl = res[i].get("originUrl");  
+        let des = res[i].get("des");  
+        if(i%2 === 0){
+          tempLeftData.push({
+            id:res[i]['id'],
+            isShow: true,
+            url: tempUrl,
+            originUrl,
+            des,
+          })
+        }else{
+          tempRightData.push({
+            id:res[i]['id'],
+            isShow: true,
+            url: tempUrl,
+            originUrl,
+            des
+          })
+        }    
+        
       }
       this.setData({
-        pages: tempData
-      })
+        leftPages: tempLeftData,
+        rightPages:tempRightData,
+      })      
       if (res.length < _count) {
         $stopWuxLoader('#wux-refresher', this, true)
         $stopWuxRefresher()

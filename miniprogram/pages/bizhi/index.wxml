@@ -1,17 +1,30 @@
+<wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" bind:loadmore="onLoadmore" scrollTop="{{scrollTop}}">
+        <view class="content">            
 
+                <!-- 左侧的内容 -->
+                <view class="content-left">
+                        <block wx:for-index="pagesIndex" wx:for="{{leftPages}}">
 
-        <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" bind:loadmore="onLoadmore" scrollTop="{{scrollTop}}">
-        <view class="content">
-    <block  wx:for-index="pagesIndex" wx:for="{{pages}}" >   
-    <view class="img-wrap"> 
+                                <view class="img-wrap">
+                                        <image wx:key="item.id" wx:if="{{item.isShow}}" mode="aspectFit" class="img" src="./img/loading.gif"></image>
 
-            <image wx:key="item.id" wx:if="{{item.isShow}}" mode="aspectFit"   class="img" src="./img/loading.gif"></image> 
+                                        <image wx:key="item.id" bindtap="goDetail" data-url='{{item.originUrl}}' mode="widthFix" class="{{item.isShow? 'img-no':'img'}}" bindload="handleLeftLoad" lazy-load='{{true}}' data-index="{{pagesIndex}}" src="{{item.url}}"></image>
+                                        <view class="img-des">{{item.des}}</view>
+                                </view>
+                        </block>
+                </view>
+                <!-- 右侧的内容 -->
+                <view class="content-right">
+                        <block wx:for-index="pagesIndex" wx:for="{{rightPages}}">
+                                <view class="img-wrap">
+                                        <image wx:key="item.id" wx:if="{{item.isShow}}" mode="aspectFit" class="img" src="./img/loading.gif"></image>
 
-            <image wx:key="item.id" bindtap="goDetail" data-url='{{item.originUrl}}' mode="aspectFit" class="{{item.isShow? 'img-no':'img'}}" bindload="handleLoad" lazy-load='{{true}}' data-index="{{pagesIndex}}" src="{{item.url}}"></image>   
+                                        <image wx:key="item.id" bindtap="goDetail" data-url='{{item.originUrl}}' mode="widthFix" class="{{item.isShow? 'img-no':'img'}}" bindload="handleRightLoad" lazy-load='{{true}}' data-index="{{pagesIndex}}" src="{{item.url}}"></image>
+<view class="img-des">{{item.des}}</view>
+                                </view>
 
-                  
-</view>
-          </block>
-          </view>
+                        </block>
+                </view>
+
+        </view>
 </wux-refresher>
-

@@ -106,6 +106,7 @@ Page({
     
     const query = new $AV.Query('photo');
     query.equalTo('isShow', 1);
+    query.equalTo('type',1);
     query.descending('createdAt');
     query.limit(_count);
     query.skip(_count*_limit);
