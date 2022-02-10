@@ -1,10 +1,14 @@
 
 <view class="container">
+  <block wx:for="{{menu}}" >
 
+  <i-cell bindtap='bindGo' data-index="{{index}}" data-id='{{item.id}}' label='{{item.des}}' i-class='item-new'  title="{{item.title}}" is-link url="{{item.menuUrl}}">
 
-  <i-cell bindtap='bindGo' data-id='{{item.id}}' label='{{item.des}}' wx:for="{{menu}}" data-index="{{index}}" i-class='item-new'  title="{{item.title}}" is-link url="{{item.menuUrl}}">
-<!-- <image slot="icon" style="width: 30px; height: 30px;padding-top:20rpx;padding-right:20rpx;" mode="" src="{{item.iconUrl}}"></image> -->
 
   </i-cell>
+  <view class="ad-pos" wx:if="{{index === 4}}">
+    <ad-custom unit-id="adunit-a28bd694bb071b41"></ad-custom>
+  </view>
+  </block>
 
 </view>

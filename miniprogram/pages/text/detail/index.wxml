@@ -5,3 +5,7 @@
 {{item.name}}
 </view>
 </block>
+
+<view class="ad-pos">
+<ad-custom unit-id="adunit-02e09fdd04e68cce"></ad-custom>
+</view>

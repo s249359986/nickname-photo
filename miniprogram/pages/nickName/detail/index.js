@@ -25,6 +25,10 @@ Page({
       success (res) {
         wx.getClipboardData({
           success (res) {
+            wx.showToast({
+              title: '内容已经复制',
+              icon:'none',
+            })
             console.log(res.data) // data
           }
         })
