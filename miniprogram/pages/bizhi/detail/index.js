@@ -8,13 +8,18 @@ import {
 } from '../../../utils/index'
 let preImg = ''
 let loading = false
+const currentPageData = {
+  videoAd: null,
+  videoSucccFn: null,
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    url:""
+    url:"",
+    adType: 0,
   },
 
   /**
@@ -23,28 +28,75 @@ Page({
   onLoad: function (options) {
     console.log('onload',options)
     let tempUrl = decodeURIComponent(options['url'])
+    let adType = +decodeURIComponent(options['adType'])
     preImg = tempUrl
     this.setData({
-      url: tempUrl
+      url: tempUrl,
+      adType: adType,
     })
+    if (wx.createRewardedVideoAd) {
+      currentPageData.videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-06f9cd09e08245a5'
+      })
+      currentPageData.videoAd.onLoad(() => {
+        wx.reportEvent("load_ad", {
+          "status": 1
+        })
+      })
+      currentPageData.videoAd.onError((err) => {
+        wx.reportEvent("load_ad", {
+          "status": 2
+        })
+        currentPageData.videoSucccFn();
+      })
+      currentPageData.videoAd.onClose((res) => {
+        wx.reportEvent("load_ad", {
+          "status": 3
+        })
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          wx.reportEvent("load_ad", {
+            "status": 5
+          })
+          currentPageData.videoSucccFn();
+        } else {
+          wx.reportEvent("load_ad", {
+            "status": 4
+          })
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
 
   },
-  previewImage1(){    
-    wx.showToast({
-      title: '长按图片保存',
-      icon: 'none',
-      duration: 2000
-    })
-    this.previewImage()
-    
+  openAd() {
+    // 用户触发广告后，显示激励视频广告
+    if (currentPageData.videoAd) {
+      currentPageData.videoAd.show().catch(() => {
+        // 失败重试
+        currentPageData.videoAd.load()
+          .then(() => currentPageData.videoAd.show())
+          .catch(err => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+    }
   },
   previewImage:function (){
-    wx.previewImage({ urls: [preImg]})
+    wx.previewImage({ urls: [preImg],showmenu: false})
   },
   goHome:function(){
     wx.navigateBack({
       delta: 1
     })
+  },
+  downloadWrap() { // 下载外包一层判断是否需要广告
+    if(this.data.adType === 1){
+      currentPageData.videoSucccFn = this.download;
+      this.openAd();
+    }else{
+      this.download();
+    }
   },
   download:function(){
     if (loading) {return}
@@ -52,7 +104,12 @@ Page({
     wx.showLoading({
       title: '保存中...',
     })
-    let tempHttps = preImg.replace('http','https');
+    let tempHttps = "";
+    if(preImg.indexOf("https") > -1){
+      tempHttps = preImg;
+    }else{
+      tempHttps = preImg.replace('http','https');
+    }
     downloadFile({
       url: tempHttps
     }).then(res=>{

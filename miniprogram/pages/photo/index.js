@@ -32,7 +32,7 @@ Page({
     } = e['target']['dataset']
     let tempUrl = encodeURIComponent(url)
     wx.navigateTo({
-      url: '/pages/photo/detail/index?url=' + tempUrl
+      url: '/pages/bizhi/detail/index?url=' + tempUrl
     })
   },
   onPageScroll(e) {    

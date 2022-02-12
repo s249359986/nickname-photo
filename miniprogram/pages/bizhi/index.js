@@ -30,11 +30,11 @@ Page({
   goDetail(e) {
     console.log("goDetail", e)
     let {
-      url
+      url,adtype
     } = e['target']['dataset']
     let tempUrl = encodeURIComponent(url)
     wx.navigateTo({
-      url: '/pages/bizhi/detail/index?url=' + tempUrl
+      url: `/pages/bizhi/detail/index?url=${tempUrl}&adType=${adtype}`
     })
   },
   onPageScroll(e) {    
@@ -106,23 +106,6 @@ Page({
   handleLoad(e) {
    
   },
-  // setPagesData(datas) {
-  //   const leftArr = [];
-  //   const rightArr = [];
-  //   for(let i=0;i< datas.length;i++){
-  //     if(i%2 === 0){
-  //       leftArr.push(datas[i]);
-  //     }
-  //     else {
-  //       rightArr.push(datas[i]);
-  //     }
-  //   }
-  //   this.setData({
-  //     leftPages: leftArr,
-  //     rightPages: rightArr,
-  //   })
-
-  // },
   initMockData(){
     let leftTemp = this.data.leftPages;
     let rightTemp = this.data.rightPages;
@@ -165,6 +148,7 @@ Page({
         let tempUrl = res[i].get("thumbnail");  
         let originUrl = res[i].get("originUrl");  
         let des = res[i].get("des");  
+        let adType = res[i].get("adType") || 0;  
         if(i%2 === 0){
           tempLeftData.push({
             id:res[i]['id'],
@@ -172,6 +156,7 @@ Page({
             url: tempUrl,
             originUrl,
             des,
+            adType,
           })
         }else{
           tempRightData.push({
@@ -179,7 +164,8 @@ Page({
             isShow: true,
             url: tempUrl,
             originUrl,
-            des
+            des,
+            adType,
           })
         }    
         
