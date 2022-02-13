@@ -12,7 +12,7 @@ import {
   $stopWuxLoader
 } from '../../libs/wux/index'
 let _limit = 0,
-  _count = 24,
+  _count = 8,
   _isLoading = false,
   isNoData = false,
   _currentTab

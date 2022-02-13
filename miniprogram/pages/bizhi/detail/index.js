@@ -18,7 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    url:"",
+    url: "",
     adType: 0,
   },
 
@@ -26,7 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onload',options)
+    console.log('onload', options)
     let tempUrl = decodeURIComponent(options['url'])
     let adType = +decodeURIComponent(options['adType'])
     preImg = tempUrl
@@ -82,60 +82,99 @@ Page({
       })
     }
   },
-  previewImage:function (){
-    wx.previewImage({ urls: [preImg],showmenu: false})
+  previewImage: function () {
+    wx.previewImage({
+      urls: [preImg],
+      showmenu: false
+    })
   },
-  goHome:function(){
+  goHome: function () {
     wx.navigateBack({
       delta: 1
     })
   },
   downloadWrap() { // 下载外包一层判断是否需要广告
-    if(this.data.adType === 1){
+    if (this.data.adType === 1) {
       currentPageData.videoSucccFn = this.download;
       this.openAd();
-    }else{
+    } else {
       this.download();
     }
   },
-  download:function(){
-    if (loading) {return}
-    loading = true
-    wx.showLoading({
-      title: '保存中...',
+  download: function () {
+
+
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.writePhotosAlbum']) {
+
+          if (loading) {
+            return
+          }
+          loading = true
+          wx.showLoading({
+            title: '保存中...',
+          })
+          let tempHttps = "";
+          if (preImg.indexOf("https") > -1) {
+            tempHttps = preImg;
+          } else {
+            tempHttps = preImg.replace('http', 'https');
+          }
+          downloadFile({
+            url: tempHttps
+          }).then(res => {
+            console.log("downloadFile", res)
+            saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+            }).then(res => {
+              wx.showToast({
+                title: '保存成功',
+              })
+              loading = false
+              console.log("saveImageToPhotosAlbum", res)
+            }).catch(err => {
+              wx.hideLoading({
+                success: (res) => {},
+              })
+
+              loading = false
+              console.log("err:saveImageToPhotosAlbum", err)
+            })
+          }).catch(err => {
+            wx.showToast({
+              title: '保存失败',
+            })
+            loading = false
+            console.log("err:downloadFile", err)
+          })
+        }else{                   
+            wx.showModal({
+              title: '温馨提示',
+              content: "请授权访问本地相册",
+              success: (res) => {
+                if (res.confirm) {
+                  wx.openSetting({
+                    withSubscriptions: true,
+                  })
+                } else {
+                  wx.showToast({
+                    title: '必须授权才能下载',
+                  })
+                }
+              },
+            })          
+        }
+      },
     })
-    let tempHttps = "";
-    if(preImg.indexOf("https") > -1){
-      tempHttps = preImg;
-    }else{
-      tempHttps = preImg.replace('http','https');
-    }
-    downloadFile({
-      url: tempHttps
-    }).then(res=>{
-      console.log("downloadFile",res)
-      saveImageToPhotosAlbum({
-        filePath: res.tempFilePath,
-      }).then(res=>{
-        wx.showToast({
-          title: '保存成功',
-        })
-        loading = false
-        console.log("saveImageToPhotosAlbum",res)
-      }).catch(err=>{
-        wx.showToast({
-          title: '保存失败',
-        })
-        loading = false
-        console.log("err:saveImageToPhotosAlbum", err)
-      })
-    }).catch(err=>{
-      wx.showToast({
-        title: '保存失败',
-      })
-      loading = false
-      console.log("err:downloadFile",err)
-    })
+
+
+
+
+
+
+
+
   },
 
   /**
@@ -184,9 +223,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    if(preImg){
+    if (preImg) {      
+      shareContent['title'] = "精美壁纸免费领取"
       shareContent['imageUrl'] = preImg
-    }    
+    }
     return shareContent;
   }
 })
