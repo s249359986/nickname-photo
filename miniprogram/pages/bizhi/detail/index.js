@@ -101,53 +101,11 @@ Page({
       this.download();
     }
   },
-  download: function () {
-
+  setingauth() {
 
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.writePhotosAlbum']) {
-
-          if (loading) {
-            return
-          }
-          loading = true
-          wx.showLoading({
-            title: '保存中...',
-          })
-          let tempHttps = "";
-          if (preImg.indexOf("https") > -1) {
-            tempHttps = preImg;
-          } else {
-            tempHttps = preImg.replace('http', 'https');
-          }
-          downloadFile({
-            url: tempHttps
-          }).then(res => {
-            console.log("downloadFile", res)
-            saveImageToPhotosAlbum({
-              filePath: res.tempFilePath,
-            }).then(res => {
-              wx.showToast({
-                title: '保存成功',
-              })
-              loading = false
-              console.log("saveImageToPhotosAlbum", res)
-            }).catch(err => {
-              wx.hideLoading({
-                success: (res) => {},
-              })
-
-              loading = false
-              console.log("err:saveImageToPhotosAlbum", err)
-            })
-          }).catch(err => {
-            wx.showToast({
-              title: '保存失败',
-            })
-            loading = false
-            console.log("err:downloadFile", err)
-          })
         }else{                   
             wx.showModal({
               title: '温馨提示',
@@ -170,10 +128,51 @@ Page({
 
 
 
+  },
+  download: function () {
 
 
+    if (loading) {
+      return
+    }
+    loading = true
+    wx.showLoading({
+      title: '保存中...',
+    })
+    let tempHttps = "";
+    if (preImg.indexOf("https") > -1) {
+      tempHttps = preImg;
+    } else {
+      tempHttps = preImg.replace('http', 'https');
+    }
+    downloadFile({
+      url: tempHttps
+    }).then(res => {
+      console.log("downloadFile", res)
+      saveImageToPhotosAlbum({
+        filePath: res.tempFilePath,
+      }).then(res => {
+        wx.showToast({
+          title: '保存成功',
+        })
+        loading = false
+        console.log("saveImageToPhotosAlbum", res)
+      }).catch(err => {
+        wx.hideLoading()
+        this.setingauth();
+      
+      
 
-
+        loading = false
+        console.log("err:saveImageToPhotosAlbum", err)
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '保存失败',
+      })
+      loading = false
+      console.log("err:downloadFile", err)
+    })
 
   },
 
