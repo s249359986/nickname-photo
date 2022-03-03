@@ -5,7 +5,6 @@
     "wux-badge": "../../libs/wux/badge/index",
     "wux-refresher": "../../libs/wux/refresher/index"
   },
-  "navigationBarBackgroundColor": "#ff6699",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "壁纸"
 }

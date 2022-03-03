@@ -1,16 +1,48 @@
 
+<view class="container">
 
-        <wux-refresher id="wux-refresher" bind:pulling="onPulling" bind:refresh="onRefresh" bind:loadmore="onLoadmore" scrollTop="{{scrollTop}}">
+<block>
+  <!-- 轮播 -->
+  <swiper indicator-dots="true" autoplay="false" interval="2000" duration="{{500}}">
+    <block wx:for="{{swiper.content}}" wx:key="*this" wx:for-item="contentItem">
+      <swiper-item>
+        <image bindtap="handleGo" data-path="{{contentItem.path}}" data-type="{{contentItem.type}}" src="{{contentItem.url}}" class="swiper-item"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+</block>
+
+<block wx:for="{{modules}}">
+  <view class="item-wrap">
+    <view class="item-title">{{item.title}}</view>
+    <view class="item-more">更多</view>
+  </view>
+  <view class="page-section-spacing">
+    <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+      <block wx:for="{{item.content}}" wx:for-item="contentItem">
+        <image bindtap="handleGo" data-path="{{contentItem.path}}" data-type="{{contentItem.type}}" src="{{contentItem.url}}" class="scroll-item scroll-item-H"></image>
+      </block>
+    </scroll-view>
+  </view>
+</block>
+</view>
+
+
+
+<view class="item-title photo-title">猜你喜欢</view>
+
+
+<wux-refresher id="wux-refresher" bind:pulling="onPulling" disablePullingRotation="true" bind:refresh="onRefresh" bind:loadmore="onLoadmore" scrollTop="{{scrollTop}}">
         <view class="content">
-    <block  wx:for-index="pagesIndex" wx:for="{{pages}}" >    
+                <block wx:for-index="pagesIndex" wx:for="{{pages}}">
 
-            <image wx:key="item.id" wx:if="{{item.isShow}}" mode="aspectFit"   class="img" src="./img/loading.gif"></image> 
+                        <image wx:key="item.id" wx:if="{{item.isShow}}" mode="aspectFit" class="img" src="./img/loading.gif"></image>
 
-            <image wx:key="item.id" bindtap="goDetail" data-url='{{item.url}}' mode="aspectFit" class="{{item.isShow? 'img-no':'img'}}" bindload="handleLoad" lazy-load='{{true}}' data-index="{{pagesIndex}}" src="{{item.url}}"></image>   
+                        <image wx:key="item.id" bindtap="goDetail" data-url='{{item.url}}' mode="aspectFit" class="{{item.isShow? 'img-no':'img'}}" bindload="handleLoad" lazy-load='{{true}}' data-index="{{pagesIndex}}" src="{{item.url}}"></image>
 
-                  
 
-          </block>
-          </view>
+
+                </block>
+        </view>
 </wux-refresher>
-

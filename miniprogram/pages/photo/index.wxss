@@ -1,5 +1,5 @@
 page { 
-  padding-top: 10rpx; 
+  /* padding-top: 10rpx;  */
   background-color: white;
 }
 
@@ -8,14 +8,15 @@ page {
   flex-wrap: wrap;  
   margin: 0 auto;
   justify-content: center;
+  overflow: hidden;
 }
 .content:after{
     content: '';
     width: 455rpx;    
   }
 .img {
-  margin-left: 5rpx;
-  margin-right: 5rpx;
+  margin-left: 11rpx;
+  margin-right: 11rpx;
   margin-bottom: 10rpx;
   width: 220rpx;
   height: 220rpx;    
@@ -23,4 +24,50 @@ page {
 .img-no {
   width: 0rpx;
   height: 1rpx;   
+}
+
+
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  margin:0 auto;
+  padding: 16rpx;
+
+}
+.item-wrap{
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+}
+.item-title{
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 40rpx;
+  font-weight: bolder;
+}
+.item-more{
+  font-size: 26rpx;
+}
+
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item{
+  height: 200rpx;
+}
+.scroll-item{
+  display: inline-block;
+  width: 50%;
+  height: 200rpx;
+  padding-right: 16rpx;
+}
+.swiper-item{
+  width: 100%;
+  height: 300rpx;
+}
+.photo-title{
+  margin-left: 16rpx;
 }

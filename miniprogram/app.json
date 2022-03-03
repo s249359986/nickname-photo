@@ -13,7 +13,7 @@
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#f72585",
     "navigationBarTitleText": "头像昵称",
     "navigationBarTextStyle": "black"
   },
@@ -23,16 +23,10 @@
     "list": [
       {
         "selectedIconPath": "images/home1.png",
-        "iconPath": "images/home.png",
+        "iconPath": "images/home.png",        
         "pagePath": "pages/nickName/index",
         "text": "昵称"
-      },
-      {
-        "selectedIconPath": "/pages/photo/img/hot.png",
-        "iconPath": "/pages/photo/img/hot1.png",
-        "pagePath": "pages/photo/index",
-        "text": "头像"
-      },
+      },           
       {
         "selectedIconPath": "images/text2.png",
         "iconPath": "images/text1.png",
@@ -41,9 +35,9 @@
       },
       {
         "selectedIconPath": "images/my1.png",
-        "iconPath": "images/my.png",
-        "pagePath": "pages/bizhi/index",
-        "text": "壁纸"
+        "iconPath": "images/my.png",        
+        "pagePath": "pages/photo/index",
+        "text": "图片"
       }
     ]
   },

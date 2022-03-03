@@ -5,7 +5,6 @@
     "i-cell": "../../libs/ivew/dist/cell/index",
     "i-icon": "../../libs/ivew/dist/icon/index"
   },
-  "navigationBarBackgroundColor": "#ff6699",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "个性签名"
 }

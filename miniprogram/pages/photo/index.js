@@ -23,6 +23,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    swiper: {},
+    modules: [],
     pages: []
   },
   goDetail(e) {
@@ -35,7 +37,7 @@ Page({
       url: '/pages/bizhi/detail/index?url=' + tempUrl
     })
   },
-  onPageScroll(e) {    
+  onPageScroll(e) {
     this.setData({
       scrollTop: e.scrollTop
     })
@@ -75,26 +77,68 @@ Page({
       title: '加载中...',
     })
     this.initMockData();
-    this.init();    
+    this.init();
+    this.initHead();
+  },
+  initHead() {
+    const query = new $AV.Query('head_album');
+    query.equalTo('isShow', 1);
+    query.descending('createdAt');
+    query.find().then(res => {
+      wx.hideLoading();
+      console.log('head_album', res)
+      let menu = []
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].get("type") === 5) {
+
+          this.setData({
+            swiper: {
+              content: res[i].get('content'),
+              title: res[i].get('title'),
+              paht: res[i].get('path')
+            }
+          })
+        } else {
+          menu.push({
+            content: res[i].get('content'),
+            title: res[i].get('title'),
+            paht: res[i].get('path')
+          });
+        }
+      }
+      this.setData({
+        modules: menu
+      })
+    })
+  },
+  handleGo(e) {
+    let {
+      path
+    } = e.target['dataset']
+    wx.navigateTo({
+      url: path,
+    })
   },
   handleLoad(e) {
-    console.log("handleLoad",e);
-    let {index} = e.target.dataset;
+    console.log("handleLoad", e);
+    let {
+      index
+    } = e.target.dataset;
     let imgs = this.data.pages;
     imgs[index]['isShow'] = false;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.setData({
-        pages:imgs
+        pages: imgs
       })
-    },300);
-   
+    }, 300);
+
   },
-  initMockData(){
+  initMockData() {
     let temp = this.data.pages;
-    for(let i=0;i<22;i++){
+    for (let i = 0; i < 22; i++) {
       temp.push({
         isShow: true,
-          url: "",
+        url: "",
       });
     }
     this.setData({
@@ -103,15 +147,15 @@ Page({
   },
   init() {
     _isLoading = true
-    
+
     const query = new $AV.Query('photo');
     query.equalTo('isShow', 1);
-    query.equalTo('type',1);
+    query.equalTo('type', 1);
     query.descending('createdAt');
     query.limit(_count);
-    query.skip(_count*_limit);
+    query.skip(_count * _limit);
     query.find().then((res) => {
-      if(_limit===0){
+      if (_limit === 0) {
         this.setData({
           pages: []
         });
@@ -121,15 +165,15 @@ Page({
       let tempData = this.data.pages;
       for (let i = 0; i < res.length; i++) {
         let tempName = res[i].get("thumbnail");
-        let tempUrl = `${FILE_URL_PATH}${tempName}`;        
-        if(tempName.indexOf('http') > -1){         
+        let tempUrl = `${FILE_URL_PATH}${tempName}`;
+        if (tempName.indexOf('http') > -1) {
           tempUrl = tempName;
-        }  
-        if(tempUrl.indexOf('https')>-1){
-          tempUrl = tempUrl.replace('https','http');
-        }     
+        }
+        if (tempUrl.indexOf('https') > -1) {
+          tempUrl = tempUrl.replace('https', 'http');
+        }
         tempData.push({
-          id:res[i]['id'],
+          id: res[i]['id'],
           isShow: true,
           url: tempUrl,
         })
@@ -147,8 +191,9 @@ Page({
       _isLoading = false
     })
   },
-  onPulling() {
-   // return //临时注释掉，有分页后增加
+  onPulling() { // 下拉刷新，暂时禁用
+ 
+    return ; //临时注释掉，有分页后增加
     console.log('onPulling')
     if (_isLoading) return
     _limit = 0
@@ -157,10 +202,7 @@ Page({
   },
   onRefresh() {
     $stopWuxLoader('#wux-refresher', this, true)
-    $stopWuxRefresher()
-
-    // return // 临时去掉加载更多
-
+    $stopWuxRefresher()        
     if (_isLoading) return
     console.log('onRefresh')
   },
@@ -220,3 +262,11 @@ Page({
     return shareContent
   }
 })
+
+
+// {
+//   "selectedIconPath": "/pages/photo/img/hot.png",
+//   "iconPath": "/pages/photo/img/hot1.png",
+//   "pagePath": "pages/photo/index",
+//   "text": "头像"
+// },
