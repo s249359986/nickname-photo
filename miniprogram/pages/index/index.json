@@ -1,7 +1,11 @@
 {
   "usingComponents": {
+    "wux-tabs": "../../libs/wux/tabs/index",
+    "wux-tab": "../../libs/wux/tab/index",
+    "wux-badge": "../../libs/wux/badge/index",
+    "wux-refresher": "../../libs/wux/refresher/index"
   },
   "navigationBarBackgroundColor": "#f72585",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "首页"
+  "navigationBarTitleText": "图片"
 }

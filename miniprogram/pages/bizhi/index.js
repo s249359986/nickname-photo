@@ -74,6 +74,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this._options = options;
     $startWuxRefresher()
     wx.showLoading({
       title: '加载中...',
@@ -125,11 +126,14 @@ Page({
     });
   },
   init() {
-    _isLoading = true
-    
+    console.log("init",this._options)
+    _isLoading = true    
     const query = new $AV.Query('photo');
     query.equalTo('isShow', 1);
     query.equalTo('type', 2);
+    if(this._options && this._options['type'] != 0){
+      query.equalTo('tags', parseInt(this._options['type']));
+    }    
     query.descending('createdAt');
     query.limit(_count);
     query.skip(_count*_limit);

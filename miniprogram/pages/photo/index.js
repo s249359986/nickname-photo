@@ -72,44 +72,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this._options = options;
     $startWuxRefresher()
     wx.showLoading({
       title: '加载中...',
     })
     this.initMockData();
-    this.init();
-    this.initHead();
-  },
-  initHead() {
-    const query = new $AV.Query('head_album');
-    query.equalTo('isShow', 1);
-    query.descending('createdAt');
-    query.find().then(res => {
-      wx.hideLoading();
-      console.log('head_album', res)
-      let menu = []
-      for (let i = 0; i < res.length; i++) {
-        if (res[i].get("type") === 5) {
-
-          this.setData({
-            swiper: {
-              content: res[i].get('content'),
-              title: res[i].get('title'),
-              paht: res[i].get('path')
-            }
-          })
-        } else {
-          menu.push({
-            content: res[i].get('content'),
-            title: res[i].get('title'),
-            paht: res[i].get('path')
-          });
-        }
-      }
-      this.setData({
-        modules: menu
-      })
-    })
+    this.init();    
   },
   handleGo(e) {
     let {
@@ -151,6 +120,9 @@ Page({
     const query = new $AV.Query('photo');
     query.equalTo('isShow', 1);
     query.equalTo('type', 1);
+    if(this._options && this._options['type'] != 0){
+      query.equalTo('tags', parseInt(this._options['type']));
+    }  
     query.descending('createdAt');
     query.limit(_count);
     query.skip(_count * _limit);
@@ -262,11 +234,3 @@ Page({
     return shareContent
   }
 })
-
-
-// {
-//   "selectedIconPath": "/pages/photo/img/hot.png",
-//   "iconPath": "/pages/photo/img/hot1.png",
-//   "pagePath": "pages/photo/index",
-//   "text": "头像"
-// },
