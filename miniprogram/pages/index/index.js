@@ -116,10 +116,10 @@ Page({
   },
   handleGo(e) {
     let {
-      path
+      path,type
     } = e.target['dataset']
     wx.navigateTo({
-      url: path,
+      url: `${path}?type=${type}`,
     })
   },
   handleLoad(e) {
