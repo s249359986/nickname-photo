@@ -120,7 +120,7 @@ Page({
     const query = new $AV.Query('photo');
     query.equalTo('isShow', 1);
     query.equalTo('type', 1);
-    if(this._options && this._options['type']){
+    if(this._options && this._options['type'] && this._options['type'] != 0){
       query.equalTo('tags', this._options['type']);
     }  
     query.descending('createdAt');
