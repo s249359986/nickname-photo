@@ -9,25 +9,26 @@
     "pages/person/index",
     "pages/bizhi/index",
     "pages/bizhi/detail/index",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/webView/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#f72585",
-    "navigationBarTitleText": "头像昵称",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "头像昵称",    
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#11cd6e",
     "list": [
       {
-        "selectedIconPath": "images/home1.png",
-        "iconPath": "images/home.png",        
+        "selectedIconPath": "images/nicheng.png",
+        "iconPath": "images/nicheng1.png",
         "pagePath": "pages/nickName/index",
         "text": "昵称"
-      },           
+      },
       {
         "selectedIconPath": "images/text2.png",
         "iconPath": "images/text1.png",
@@ -36,9 +37,15 @@
       },
       {
         "selectedIconPath": "images/my1.png",
-        "iconPath": "images/my.png",        
+        "iconPath": "images/my.png",
         "pagePath": "pages/index/index",
         "text": "图片"
+      },
+      {
+        "selectedIconPath": "images/faxian1.png",
+        "iconPath": "images/faxian.png",
+        "pagePath": "pages/webView/index",
+        "text": "发现"
       }
     ]
   },
