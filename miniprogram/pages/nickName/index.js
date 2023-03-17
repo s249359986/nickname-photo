@@ -1,8 +1,5 @@
 // miniprogram/pages/nickName/index.js
 import {
-  getNickName
-} from '../../utils/db'
-import {
   shareContent
 } from '../../config'
 const $AV = getApp().globalData.$AV;

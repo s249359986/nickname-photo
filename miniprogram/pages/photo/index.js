@@ -1,6 +1,3 @@
-import {
-  getPhoto
-} from '../../utils/db'
 let tool = require('../../utils/util')
 import {
   shareContent,
